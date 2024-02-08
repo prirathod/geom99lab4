@@ -1,0 +1,96 @@
+<html>
+   <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+     <title>Destination Wedding in Rajasthan</title>
+     <style>
+       html, body, #viewDiv {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         width: 100%;
+       }
+     </style>
+     <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+     <script src="https://js.arcgis.com/4.28/"></script>
+     <script>
+   
+     require([
+       "esri/config",
+       "esri/Map",
+       "esri/views/MapView",
+       "esri/Graphic",
+       "esri/layers/GraphicsLayer"
+       ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+   
+     esriConfig.apiKey = "AAPK98acf6ff1a79466c881d8e25c2e1caebbzS9ltsyrwgVOl7JOKKbGn6QL51BbManCZuJ_qAvTLMylpeDgQeLlbgG0O8hNMHF";
+   
+     const map = new Map({
+       basemap: "osm" //Basemap layer service
+     });
+   
+     const view = new MapView({
+       map: map,
+       center: [  70.922928,26.911661], //Longitude, latitude
+       zoom: 6.5,
+       container: "viewDiv"
+    });
+   
+    const graphicsLayer = new GraphicsLayer();
+    map.add(graphicsLayer);
+   
+    const point = { //Create a point
+       type: "point",
+       longitude: 70.922928,
+       latitude: 26.911661
+    };
+    const simpleMarkerSymbol = {
+       type: "simple-marker",
+       color: [255, 0, 0],  // Orange
+       outline: {
+           color: [255, 255, 255], // White
+           width: 1
+       }
+    };
+   
+    const pointGraphic = new Graphic({
+       geometry: point,
+       symbol: simpleMarkerSymbol
+    });
+    graphicsLayer.add(pointGraphic);
+   
+       // Create a line geometry
+    const polyline = {
+       type: "polyline",
+       paths: [
+           [70.9229,26.9116 ], //Longitude, latitude
+           //[75.7915, 26.9187], //Longitude, latitude
+           [75.80814, 26.89811], //Longitude, latitude
+           //[75.9048,27.05154],   //Longitude, latitude
+           [ 73.0473,26.2810],  //Longitude, latitude
+           //[73.6816,26.32845],  //Longitude, latitude
+           [73.6799,24.57548]  //Longitude, latitude
+       ]
+    };
+    const simpleLineSymbol = {
+       type: "simple-line",
+       color: [226, 119, 40], // Orange
+       width: 2
+    };
+   
+    const polylineGraphic = new Graphic({
+       geometry: polyline,
+       symbol: simpleLineSymbol
+    });
+    graphicsLayer.add(polylineGraphic);
+   
+    
+
+   
+    });
+   </script>
+   </head>
+   <body>
+     <div id="viewDiv"></div>
+   </body>
+   </html>
