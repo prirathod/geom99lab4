@@ -2,7 +2,7 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-     <title>ArcGIS Maps SDK for JavaScript Tutorials: Add a point, line, and polygon</title>
+     <title>Asiatic Lions</title>
      <style>
        html, body, #viewDiv {
          padding: 0;
@@ -26,13 +26,13 @@
      esriConfig.apiKey = "AAPK98acf6ff1a79466c881d8e25c2e1caebbzS9ltsyrwgVOl7JOKKbGn6QL51BbManCZuJ_qAvTLMylpeDgQeLlbgG0O8hNMHF";
    
      const map = new Map({
-       basemap: "arcgis-terrain" //Basemap layer service
+       basemap: "osm" //Basemap layer service
      });
    
      const view = new MapView({
        map: map,
-       center: [76.508102, 35.880981], //Longitude, latitude
-       zoom: 8.5,
+       center: [ 70.7913,21.1347], //Longitude, latitude
+       zoom: 9.5,
        container: "viewDiv"
     });
    
@@ -41,15 +41,15 @@
    
     const point = { //Create a point
        type: "point",
-       longitude: 76.508102,
-       latitude: 35.880981
+       longitude: 70.7913,
+       latitude: 21.1347
     };
     const simpleMarkerSymbol = {
        type: "simple-marker",
-       color: [250, 0, 0],  // Red
+       color: [255, 0, 0],  // Orange
        outline: {
-           color: [255, 255, 255], // blACK
-           width: 6
+           color: [255, 255, 255], // White
+           width: 1
        }
     };
    
@@ -63,16 +63,17 @@
     const polyline = {
        type: "polyline",
        paths: [
-           [76.508102, 35.880981], //Longitude, latitude
-           [75.9971 , 35.0916],   //Longitude, latitude
-           [75.7525, 35.9478], //Longitude, latitude
-           [ 75.5907,35.31052] // Longitude, latitude
+           [ 70.7913, 21.1347 ], //Longitude, latitude
+           [70.8100, 21.2900], //Longitude, latitude
+           [71.21817, 21.60287], //Longitude, latitude
+           [71.3052,21.3377],   //Longitude, latitude
+           [ 70.596481,21.169065]   //Longitude, latitude
        ]
     };
     const simpleLineSymbol = {
-       type: "simpleline",
-       color: [255, 0, 0], // red
-       width: 4
+       type: "simple-line",
+       color: [226, 119, 40], // Orange
+       width: 2
     };
    
     const polylineGraphic = new Graphic({
@@ -81,18 +82,33 @@
     });
     graphicsLayer.add(polylineGraphic);
    
-    
+    // Create a polygon geometry
+    const polygon = {
+       type: "polygon",
+       rings: [
+         [ 70.7913, 21.1347 ], //Longitude, latitude
+         [70.8100, 21.2900], //Longitude, latitude
+         [71.21817, 21.60287], //Longitude, latitude
+         [71.3052,21.3377],   //Longitude, latitude
+         [ 70.596481,21.169065]   //Longitude, latitude
+       ]
+    };
    
     const simpleFillSymbol = {
        type: "simple-fill",
-       color: [255, 0, 0],  // Red, opacity 80%
+       color: [255, 0, 0, 0.8],  // Red, opacity 80%
        outline: {
-           color: [255, 255, 255], // White
+           color: [194, 15, 17],
            width: 1
        }
     };
    
+    const polygonGraphic = new Graphic({
+       geometry: polygon,
+       symbol: simpleFillSymbol,
    
+    });
+    graphicsLayer.add(polygonGraphic);
    
     });
    </script>
