@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Places I visited with my boyfriend</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+
+  <script>
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+
+    "esri/layers/FeatureLayer"
+
+  ], function(esriConfig, Map, MapView, FeatureLayer) {
+
+  esriConfig.apiKey = "AAPK98acf6ff1a79466c881d8e25c2e1caebbzS9ltsyrwgVOl7JOKKbGn6QL51BbManCZuJ_qAvTLMylpeDgQeLlbgG0O8hNMHF";
+
+  const map = new Map({
+    basemap: "osm"
+  });
+
+  const view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [73.7125,24.5854],
+    zoom: 13
+  });
+
+//Trailheads feature layer (points)
+  const trailheadsLayer = new FeatureLayer({
+    url: "https://services1.arcgis.com/pMeXRvgWClLJZr3s/arcgis/rest/services/Places_I_visited_with_my_boyfriend_in_India/FeatureServer"
+  });
+  map.add(trailheadsLayer);
+  });
+</script>
+
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
